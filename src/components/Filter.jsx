@@ -1,15 +1,12 @@
 import { Filter, Globe, MapPin, User, CheckCircle, Calendar, User2Icon, UserCircle2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { dateascendingsort, datedescendingsort, Nameascendingsort, Namedescendingsort, statusfilter } from "../redux/Visaslice";
 import Sidebaricons from "./Sidebaricons";
-import MarqueeBanner from "./Marqueebanner";
 import { Typewriter } from "react-simple-typewriter";
 
 export default function SidePanel() {
-  const[visacenter,setvisacenter]=useState([])
+ 
   const [status,setstatus]=useState([])
   const[category,setcategory]=useState("")
  const{filterdetails1}=useSelector((state)=>state.visa)
