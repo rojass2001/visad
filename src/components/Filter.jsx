@@ -128,7 +128,7 @@ function handlechange(value) {
           <CheckCircle className="w-7 h-7 " />
           Status
         </h3>
-        <ul className="space-y-3 pl-6 text-xl font-bold ">
+        <ul className="space-y-3 pl-6 text-xl font-bold">
           <li><input type="checkbox"
           onClick={()=>handlechange("Pending")}
            checked={status.includes("Pending")}  className="mr-3 w-5 h-5" />Pending</li>
