@@ -1,7 +1,5 @@
 @import "tailwindcss";
-body{
 
-}
 /* In your global CSS (e.g., styles.css or globals.css) */
 @layer utilities {
   .scrollbar-hide {
