@@ -54,7 +54,7 @@ function handlechange(value) {
     <aside 
    
     style={{height:'calc(100vh-200px)'}}
-    className="w-[17%] rounded-4xl text-white italic pt-2 pb-[100px] overflow-y-auto fixed left-4 top-5 bottom-6 z-10  shadow-xl bg-green-500 px-3  border border-gray-200 scrollbar-hide">
+    className="w-[17%] rounded-4xl text-white italic pt-2 pb-[100px] overflow-y-auto fixed left-4 top-5 bottom-6 z-10  shadow-xl bg-green-500 px-3  border border-gray-200">
       <div className="w-full mb-1 py-3 rounded-3xl place-items-center">
         <div className="relative">
         <img src="https://t4.ftcdn.net/jpg/10/00/85/93/360_F_1000859366_P6SmEvxeMgvXUhx5oFnsbM8rOiGN6SAG.jpg" 

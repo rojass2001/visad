@@ -1,8 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { newaddentry } from '../redux/Visaslice';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 function Cotraveleredit({person, editpoppup,index,id}) {
   const dispatch=useDispatch()
@@ -42,15 +41,7 @@ const [persons, setperson] = React.useState({
       localStorage.setItem("visa", JSON.stringify(parsed));
       dispatch(newaddentry(parsed));
 
-      toast.success("Submitted successfully!", {
-            containerId: 'form-toast', // <== important
-            style: {
-              background: '#ffffff', // white background
-              color: '#000000',      // black text
-              fontWeight: 'bold',
-              marginTop:"100px",     
-            },
-          });
+    
     } else {
       console.log("Item with matching ID not found");
     }
@@ -64,19 +55,8 @@ const [persons, setperson] = React.useState({
        
            <form 
            onSubmit={updatedetails}
-           className="italic bg-white  relative overflow-y-auto w-[35%] h-[calc(100%-100px)] pb-4 pt-14 px-6 rounded-3xl shadow-lg scrollbar-hide">
-             <ToastContainer
-                    enableMultiContainer
-                    containerId="form-toast"
-                    position="top-center"
-                    autoClose={1000}
-                    hideProgressBar
-                    newestOnTop
-                    closeOnClick
-                    draggable={false}
-                    pauseOnHover={false}
-                    
-                  />
+           className="italic bg-white  relative overflow-y-auto w-[35%] h-[calc(100%-100px)] pb-4 pt-14 px-6 rounded-3xl shadow-lg">
+             
            <div className="relative">
            <input type="text"
             name="firstName" 

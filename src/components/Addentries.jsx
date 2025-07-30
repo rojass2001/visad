@@ -85,7 +85,7 @@ function submit(e) {
     
         <form 
         onSubmit={submit}
-        className="italic relative overflow-y-auto max-h-[850px] bg-white pb-4 pt-18 px-6 rounded-3xl shadow-lg w-[35%] scrollbar-hide">
+        className="italic relative overflow-y-auto max-h-[850px] bg-white pb-4 pt-18 px-6 rounded-3xl shadow-lg w-[35%]">
        
  <div className="relative mb-4">
         <input type="Date"
