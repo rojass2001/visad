@@ -1,9 +1,11 @@
+import { Filter } from 'lucide-react';
 import Main from './components/Main';
+import SidePanel from './components/Filter';
 
 function App() {
   return (
     <div>
-      <Main/>
+      <SidePanel/>
     </div>
   )
 }
