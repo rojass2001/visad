@@ -82,18 +82,18 @@ function handlechange(value) {
 <Sidebaricons/>
 
 
-      <div className="text-4xl font-bold flex items-center gap-4 mb-7  mt-5">
+      <div className="sm:text-2xl md:text-4xl font-bold flex items-center gap-4 mb-7  mt-5">
         <Filter className="w-8 h-8 text-white" />
         Filters
       </div>
 
  {/* sortby date Filter */}
-      <div className="t">
-        <h3 className="text-2xl py-2  px-2 font-bold flex items-center gap-4 mb-4">
+      <div className="">
+        <h3 className="sm:text-xl md:text-2xl py-2  px-2 font-bold flex items-center gap-4 mb-4">
           <Calendar className="w-7 h-7 " />
           By Date
         </h3>
-        <ul className="space-y-5 text-xl pl-6 font-bold">
+        <ul className="space-y-5 sm:text-md md:text-xl pl-6 font-bold">
           <li><input
           checked={category==="dateasc"}
             onChange={()=>dateascending("dateasc")}
@@ -106,11 +106,11 @@ function handlechange(value) {
       </div>
 
       <div className="mt-6 mb-6">
-        <h3 className="text-2xl py-2 px-2 font-bold flex items-center gap-4 mb-4">
-          <UserCircle2 className="w-6.5 h-6.5 " />
+        <h3 className="sm:text-md lg:text-2xl py-2 px-2 font-bold flex items-center gap-4 mb-4">
+          <UserCircle2 className="lg:w-6.5 lg:h-6.5 " />
           By Name
         </h3>
-        <ul className="space-y-5 text-xl pl-6 font-bold ">
+        <ul className="space-y-5 sm:text-md md:text-xl pl-6 font-bold ">
           <li><input 
           onChange={()=>nameascending("nameasc")}
           checked={category==="nameasc"}
@@ -125,10 +125,10 @@ function handlechange(value) {
       {/* Status Filter */}
       <div className="mt-6">
         <h3 className="text-[26px] font-bold p-2 flex items-center gap-4 mb-4">
-          <CheckCircle className="w-7 h-7 " />
+          <CheckCircle className="md:w-7 md:h-7 " />
           Status
         </h3>
-        <ul className="space-y-3 pl-6 text-xl font-bold">
+        <ul className="space-y-3 pl-6 sm:text-sm md:text-xl font-bold">
           <li><input type="checkbox"
           onClick={()=>handlechange("Pending")}
            checked={status.includes("Pending")}  className="mr-3 w-5 h-5" />Pending</li>
@@ -159,7 +159,7 @@ function handlechange(value) {
 
        {/* Visa Center Filter */}
       <div className="mt-6">
-        <h3 className="text-2xl font-bold pl-2 flex items-center gap-2 mb-4">
+        <h3 className="sm:text-sm md:text-2xl font-bold pl-2 flex items-center gap-2 mb-4">
           <MapPin className="w-7 h-7" />
           Visa Center
         </h3>
@@ -183,11 +183,11 @@ function handlechange(value) {
 
       {/* Country Filter */}
       <div className="mt-6">
-        <div className="text-2xl font-bold p-2 flex items-center gap-4 mb-4">
+        <div className="sm:text-md md:text-2xl lg:text-xl font-bold p-2 flex items-center gap-4 mb-4">
           <Globe className="w-7 h-7 " />
           Country
         </div>
-        <ul className="space-y-3 text-xl pl-6 font-bold">
+        <ul className="space-y-3 sm:text-sm md:text-xl lg:text-xl pl-6 font-bold">
          
           <li><input
           onChange={()=>handlechange("America")}
