@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import PersonEdit from './Edit';
 import Cotraveleredit from './Cotraveleredit';
 import Addcotraveler from './Addcotraveler';
-import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { newaddentry } from '../redux/Visaslice';
 
@@ -29,20 +28,7 @@ function Card({persons}) {
       localStorage.setItem("visa", JSON.stringify(parsed));
       dispatch(newaddentry(parsed));
 
-     toast.success("Co-traveler removed successfully!", {
-  containerId: 'form-toast',
-  style: {
-    background: '#fff',
-    color: '#000',
-    fontWeight: 'lighter',
-    marginTop: '150px',
-    borderRadius: '12px',
-    padding: '12px 20px',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-  },
-  position: "top-center",
-  autoClose: 3000,
-});
+    
 
     } else {
       console.log("Item with matching ID not found");

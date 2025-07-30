@@ -51,7 +51,7 @@ function Addcotraveler({editpoppup,id}) {
        
            <form 
           
-           className="italic h-[calc(100%-100px)] flex flex-col space-y-3 overflow-y-auto relative bg-white pb-4 pt-14 px-6 rounded-3xl shadow-lg w-[35%] scrollbar-hide"
+           className="italic h-[500px] flex flex-col space-y-3 overflow-y-auto relative bg-white pb-4 pt-14 px-6 rounded-3xl shadow-lg w-[35%] scrollbar-hide"
            onSubmit={updatedetails}
            
            >
