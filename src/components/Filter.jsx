@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { dateascendingsort, datedescendingsort, Nameascendingsort, Namedescendingsort, statusfilter } from "../redux/Visaslice";
 import Sidebaricons from "./Sidebaricons";
 import { Typewriter } from "react-simple-typewriter";
-
+import {motion} from "framer-motion";
 export default function SidePanel() {
  
   const [status,setstatus]=useState([])
