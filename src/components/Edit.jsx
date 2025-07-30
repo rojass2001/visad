@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { newaddentry } from '../redux/Visaslice';
+
 function PersonEdit({person, editpoppup}) {
   const dispatch=useDispatch()
     const [persons, setperson] = React.useState({
@@ -32,7 +33,6 @@ function PersonEdit({person, editpoppup}) {
   note: person.persons.note,
 });
 
-const [items,setItems]=useState([])
  
    const updatedetails = (e) => {
   e.preventDefault();

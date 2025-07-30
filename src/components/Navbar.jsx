@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { dropdownfilter, searchproducts } from '../redux/Visaslice';
 import { User, Bell, Mail, User2, User2Icon, UserCheck } from "lucide-react";
 import Passengersentry from './Addentries';
 import { Typewriter } from 'react-simple-typewriter';
 import MarqueeBanner from './Marqueebanner';
 import { motion } from 'framer-motion';
+
 function Navbar() {
   const [search, setsearch] = useState("");
   const [entries, setentries] = useState(false);
