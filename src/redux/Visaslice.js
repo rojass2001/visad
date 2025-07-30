@@ -15,7 +15,6 @@ const visaslice = createSlice({
 
   reducers: {
 setvisadetails: (state, action) => {
-  console.log("hai")
   const stored = localStorage.getItem('visa');
 
   if (!stored) {

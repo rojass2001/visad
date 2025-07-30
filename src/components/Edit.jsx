@@ -1,7 +1,4 @@
 import React from 'react'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { newaddentry } from '../redux/Visaslice';
 
@@ -46,16 +43,7 @@ function PersonEdit({person, editpoppup}) {
       finditem.persons = persons; // ✅ Update the persons field
       localStorage.setItem("visa", JSON.stringify(parsed));
       dispatch(newaddentry(parsed));
-      toast.success("Submitted successfully!", {
-      containerId: 'form-toast', // <== important
-      style: {
-        background: '#ffffff', // white background
-        color: '#000000',      // black text
-        fontWeight: 'bold',
-        marginTop:"100px",
-      
-      },
-    });
+     
     } else {
       console.log("Item with matching ID not found");
     }
@@ -73,18 +61,7 @@ function PersonEdit({person, editpoppup}) {
      <form 
        onSubmit={updatedetails}
         className="italic relative overflow-y-auto max-h-[850px] bg-white pb-4 pt-18 px-6 rounded-3xl shadow-lg w-[35%] scrollbar-hide">
-        <ToastContainer
-        enableMultiContainer
-        containerId="form-toast"
-        position="top-center"
-        autoClose={1000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        draggable={false}
-        pauseOnHover={false}
-        
-      />
+   
  <div className="relative mb-4">
         <input type="Date"
          name="traveldate" 

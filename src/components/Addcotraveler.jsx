@@ -1,7 +1,5 @@
 import React from 'react'
-import { toast } from 'react-toastify'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 function Addcotraveler({editpoppup,id}) {
   console.log(id)
@@ -38,15 +36,7 @@ function Addcotraveler({editpoppup,id}) {
     if (finditem) {
       finditem.cotravelers.push(person); // ✅ add the cotraveler field
       localStorage.setItem("visa", JSON.stringify(parsed));
-      toast.success("Submitted successfully!", {
-            containerId: 'form-toast', // <== important
-            style: {
-              background: '#ffffff', // white background
-              color: '#000000',      // black text
-              fontWeight: 'bold',
-              marginTop:"100px",
-            },
-          });
+      
     } else {
       console.log("Item with matching ID not found");
     }
@@ -65,18 +55,7 @@ function Addcotraveler({editpoppup,id}) {
            onSubmit={updatedetails}
            
            >
-             <ToastContainer
-        enableMultiContainer
-        containerId="form-toast"
-        position="top-center"
-        autoClose={1000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        draggable={false}
-        pauseOnHover={false}
-        
-      />
+             
            <div className="relative">
            <input type="text"
             name="firstName" 

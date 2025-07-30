@@ -1,7 +1,5 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { newaddentry } from '../redux/Visaslice';
 
 function Passengersentry({ popup}) {
@@ -76,16 +74,7 @@ function submit(e) {
   // Save updated array back to localStorage
   localStorage.setItem("visa", JSON.stringify(storedVisas));
   dispatch(newaddentry(storedVisas))
-toast.success("Submitted successfully!", {
-      containerId: 'form-toast', // <== important
-      style: {
-        background: '#ffffff', // white background
-        color: '#000000',      // black text
-        fontWeight: 'bold',
-        marginTop:"100px",
-        
-      },
-    });
+
   // Optional: log for confirmation
   console.log("Updated visa list:", storedVisas);
 }
@@ -97,18 +86,7 @@ toast.success("Submitted successfully!", {
         <form 
         onSubmit={submit}
         className="italic relative overflow-y-auto max-h-[850px] bg-white pb-4 pt-18 px-6 rounded-3xl shadow-lg w-[35%] scrollbar-hide">
-        <ToastContainer
-        enableMultiContainer
-        containerId="form-toast"
-        position="top-center"
-        autoClose={1000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        draggable={false}
-        pauseOnHover={false}
-        
-      />
+       
  <div className="relative mb-4">
         <input type="Date"
          name="persons.traveldate" 
