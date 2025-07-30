@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { dropdownfilter, searchproducts } from '../redux/Visaslice';
 import { User, Bell, Mail, User2, User2Icon, UserCheck } from "lucide-react";
 import Passengersentry from './Addentries';
 import { Typewriter } from 'react-simple-typewriter';
-import MarqueeBanner from './Marqueebanner';
 
 function Navbar() {
   const [search, setsearch] = useState("");
@@ -36,11 +34,8 @@ const searchproduct=()=>{
 }
 
   return (
-    <motion.header 
-    initial={{ scale: 0.1, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.8,delay:1, ease: "easeOut" }}
-    className="relative">
+    <header >
+
       
       <nav className={`w-[78%] fixed ${searchbar?"z-30":"z-10"} top-6 left-[20%] right-4 bg-white border-t-1 border-white rounded-3xl px-6 pt-4 pb-[120px] shadow-sm shadow-gray-400`}>
         
@@ -155,7 +150,7 @@ const searchproduct=()=>{
       </nav>
 
       {entries && <Passengersentry popup={() => setentries(false)} />}
-    </motion.header>
+    </header>
   );
 }
 

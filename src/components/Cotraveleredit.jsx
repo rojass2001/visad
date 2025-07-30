@@ -65,7 +65,7 @@ const [persons, setperson] = React.useState({
        
            <form 
            onSubmit={updatedetails}
-           className="italic bg-white relative overflow-y-auto scrollbar-hide w-[35%] h-[calc(100%-100px)] pb-4 pt-14 px-6 rounded-3xl shadow-lg ">
+           className="italic bg-white relative overflow-y-auto w-[35%] h-[calc(100%-100px)] pb-4 pt-14 px-6 rounded-3xl shadow-lg ">
              <ToastContainer
                     enableMultiContainer
                     containerId="form-toast"

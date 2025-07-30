@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import Navbar from '../components/Navbar'
 import Filter from '../components/Filter'
 import {visa} from '../Visa'
 import { useDispatch, useSelector } from 'react-redux'
 import { setvisadetails } from '../redux/Visaslice'
 import Card from '../components/Card'
-import { motion } from 'framer-motion'
+
 
 function Home() {
     const {alldetails}=useSelector((state)=>state.visa)
@@ -19,10 +19,8 @@ function Home() {
    }
   return (
     <div>
-      <motion.div className="w-[76%] fixed z-10  pt-8 top-[38%] right-2  left-[20%]"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.9, delay:1.2, ease: "easeOut" }}
+      <div className="w-[76%] fixed z-10  pt-8 top-[38%] right-2  left-[20%]"
+    
       >
         <div className="rounded-3xl w-full relative overflow-y-auto border-green-500 px-20 py-7"
 
@@ -52,7 +50,7 @@ function Home() {
 
         </div> }
         </div>
-      </motion.div>
+      </div>
     </div>
   )
 }

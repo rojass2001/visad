@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { dateascendingsort, datedescendingsort, Nameascendingsort, Namedescendingsort, statusfilter } from "../redux/Visaslice";
 import Sidebaricons from "./Sidebaricons";
 import { Typewriter } from "react-simple-typewriter";
-import {motion} from "framer-motion";
+
+
 export default function SidePanel() {
  
   const [status,setstatus]=useState([])
@@ -50,10 +51,8 @@ function handlechange(value) {
 
 
   return (
-    <motion.aside 
-    initial={{ opacity: 0, x: -500 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.9,delay:2 }}
+    <aside 
+   
     style={{height:'calc(100vh-200px)'}}
     className="w-[17%] rounded-4xl scrollbar-hide  text-white italic pt-2 pb-[100px] overflow-y-auto fixed left-4 top-5 bottom-6 z-10  shadow-xl bg-green-500 px-3  border border-gray-200">
       <div className="w-full mb-1 py-3 rounded-3xl place-items-center">
@@ -204,10 +203,7 @@ function handlechange(value) {
            type="checkbox" value="Denmark" className="mr-3 w-5 h-5" />Denmark</li>
         </ul>
       </div>
-
      
-
-     
-    </motion.aside>
+    </aside>
   );
 } 
