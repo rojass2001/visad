@@ -83,7 +83,7 @@ toast.success("Submitted successfully!", {
         color: '#000000',      // black text
         fontWeight: 'bold',
         marginTop:"100px",
-        fontFamily: 'Poppins, sans-serif',
+        
       },
     });
   // Optional: log for confirmation
@@ -96,7 +96,7 @@ toast.success("Submitted successfully!", {
     
         <form 
         onSubmit={submit}
-        className="italic relative  overflow-y-auto max-h-[850px] bg-white pb-4 pt-18 px-6 rounded-3xl shadow-lg w-[35%]">
+        className="italic relative overflow-y-auto max-h-[850px] bg-white pb-4 pt-18 px-6 rounded-3xl shadow-lg w-[35%] scrollbar-hide">
         <ToastContainer
         enableMultiContainer
         containerId="form-toast"

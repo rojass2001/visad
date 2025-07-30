@@ -34,10 +34,8 @@ function Card({persons}) {
   style: {
     background: '#fff',
     color: '#000',
-    
     fontWeight: 'lighter',
     marginTop: '150px',
-    fontFamily: 'Poppins, sans-serif',
     borderRadius: '12px',
     padding: '12px 20px',
     boxShadow: '0 2px 8px rgba(0,0,0,0.1)',

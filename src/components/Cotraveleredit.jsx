@@ -48,8 +48,7 @@ const [persons, setperson] = React.useState({
               background: '#ffffff', // white background
               color: '#000000',      // black text
               fontWeight: 'bold',
-              marginTop:"100px",
-              fontFamily: 'Poppins, sans-serif',
+              marginTop:"100px",     
             },
           });
     } else {
@@ -65,7 +64,7 @@ const [persons, setperson] = React.useState({
        
            <form 
            onSubmit={updatedetails}
-           className="italic bg-white relative overflow-y-auto w-[35%] h-[calc(100%-100px)] pb-4 pt-14 px-6 rounded-3xl shadow-lg ">
+           className="italic bg-white  relative overflow-y-auto w-[35%] h-[calc(100%-100px)] pb-4 pt-14 px-6 rounded-3xl shadow-lg scrollbar-hide">
              <ToastContainer
                     enableMultiContainer
                     containerId="form-toast"
