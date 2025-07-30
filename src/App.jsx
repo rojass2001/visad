@@ -1,12 +1,14 @@
-import Routings from './Rotings';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './components/Navbar';
+import Main from './components/Main';
 
 function App() {
   return (
     <div>
-     <Routings/>
+  
       <ToastContainer enableMultiContainer containerId="form-toast" />
+      <Main/>
     </div>
   )
 }
