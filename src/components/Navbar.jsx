@@ -117,11 +117,8 @@ const searchproduct=()=>{
 
         </div>
 
-        <motion.div 
-        initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-     
-      transition={{ duration: 0.4,delay:0.5, ease: "easeInOut" }}
+        <div 
+       
         className="py-2 px-2 hover:scale-110 transform-transition duration-300 gap-4 flex items-center bg-white rounded-full shadow-md shadow-gray-300">
             <img
               src="https://t4.ftcdn.net/jpg/10/00/85/93/360_F_1000859366_P6SmEvxeMgvXUhx5oFnsbM8rOiGN6SAG.jpg"
@@ -155,7 +152,7 @@ const searchproduct=()=>{
               </h2>
               <p className="text-xs text-gray-500">Welcome back!</p>
             </div>
-          </motion.div>
+          </div>
       </nav>
 
       {entries && <Passengersentry popup={() => setentries(false)} />}

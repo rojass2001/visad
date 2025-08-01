@@ -42,7 +42,7 @@ persons:{
         state: "dfsg",
         city:"Torranto",
         postcode: "347788",
-        note: "sg"
+        note: "Travel vibe"
   }]
 },
 
@@ -138,7 +138,25 @@ persons:{
   postcode: "110896",
   note: "Documents Appointed, awaiting visa print."
 },
-    cotravelers:[]
+    cotravelers:[
+      {
+        firstName: "Amal",
+        lastName: "Biju",
+        gender: "Male",
+        nationality: "Australian",
+        dob: "1978-03-18",
+        passportNo: "AMDN1234567",
+        passportExpiry: "2027-07-20",
+        contact: "67686978544",
+        email: "Amal@gmail.com",
+          addressLine1: "12 Ashly House",
+         addressLine2: "Apt 6B",
+        state: "Melbon",
+        city:"Canberra",
+        postcode: "899644",
+        note: "Travel is energy"
+  }
+    ]
   },
 {
     id:5,

@@ -11,12 +11,18 @@ const itemsPerPage = 4;
 
 function Home() {
     const {alldetails}=useSelector((state)=>state.visa)
+    const [page, setPage] = useState(0);
     const dispatch=useDispatch()
     useEffect(()=>{
     setdetails()
+   
     },[])
+     useEffect(()=>{
+   setPage(0)
+   
+    },[alldetails])
     const totalPages = Math.ceil(alldetails?.length / itemsPerPage);
-  const [page, setPage] = useState(0);
+  
 
   const handleNext = () => {
     setPage((prev) => (prev + 1 < totalPages ? prev + 1 : 0));
@@ -33,7 +39,7 @@ function Home() {
    }
   return (
     <div>
-      <motion.div className="w-[76%] fixed z-20 h-[300px] shadow-sm border-t border-gray-200 shadow-gray-300 pb-3 pt-2 scrollbar-hidden  overflow-y-auto  top-[280px] right-2  left-[20%]"
+      <motion.div className="w-[76%] scroll-smooth border-1 border-green-500 fixed z-20 h-[300px] shadow-sm border-t  shadow-gray-300 pb-3 pt-2 scrollbar-hidden  overflow-y-auto  top-[280px] right-2  left-[20%]"
        initial={{ scale: 0, opacity:0 }}   // starting position
       animate={{ opacity: 1, scale: 1 }}     // final position
       transition={{ duration: 0.9,delay:1.7 }}     // 
