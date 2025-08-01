@@ -54,20 +54,20 @@ export default function SidePanel() {
       animate={{ opacity: 1, x: 0 }}     // final position
       transition={{ duration: 0.9,delay:1.2 }}     // animation duration
            // hover animation
-      className="fixed bg-green-500 pl-0.5  shadow-lg shadow-gray-300 top-[20px] left-4 bottom-[20px] w-[200px] pb-8 pt-7  rounded-3xl italic text-white overflow-y-auto scrollbar-hidden" style={{height:'calc(100vh-40px)'}}>
+      className="fixed bg-green-500 pl-1  shadow-lg shadow-gray-300 top-[20px] left-4 bottom-[20px] w-[200px] pb-8 pt-7  rounded-3xl italic text-white overflow-y-auto scrollbar-hidden" style={{height:'calc(100vh-40px)'}}>
     
    
-      <div className="place-items-center">
-        <div className="relative w-18 h-18">
+      <div className="mb-2 mr-1">
+        <div className="relative w-26 rounded-full mx-auto h-26">
           <img
             src="https://t4.ftcdn.net/jpg/10/00/85/93/360_F_1000859366_P6SmEvxeMgvXUhx5oFnsbM8rOiGN6SAG.jpg"
             alt="Profile"
-            className="w-18 h-18 rounded-full"
+            className="w-26 h-26 rounded-full"
           />
-          <button className="absolute bottom-[4px] text-green-500 flex items-center justify-center font-bold right-[-2px]  rounded-full w-6 h-6 bg-white">+</button>
+          <button className="absolute bottom-[6px] text-green-500 flex items-center  justify-center font-bold -right-1 rounded-full w-7 h-7 bg-white">+</button>
         </div>
-        <h2 className="text-xl font-bold mt-2 mr-3 text-white">
-          Hi Rojas
+        <h2 className="text-xl ml-9 font-bold mt-3  text-white">
+          Hi Rojass
         </h2>
       </div>
 
