@@ -35,9 +35,11 @@ const searchproduct=()=>{
 }
 
   return (
-    <header className='' >
-
-      
+    <motion.header className='' 
+     initial={{ scale: 0, opacity:0 }}   // starting position
+      animate={{ opacity: 1, scale: 1 }}     // final position
+      transition={{ duration: 0.9,delay:0.2 }}     
+      >
       <nav className={`w-[78%] fixed ${searchbar?"z-30":"z-10"} flex justify-between items-center top-6 left-[250px] right-4 bg-white border-t-1 border-white rounded-3xl px-6 pt-4 pb-20 shadow-sm shadow-gray-400`}>
         
         
@@ -157,7 +159,7 @@ const searchproduct=()=>{
       </nav>
 
       {entries && <Passengersentry popup={() => setentries(false)} />}
-    </header>
+    </motion.header>
   );
 }
 

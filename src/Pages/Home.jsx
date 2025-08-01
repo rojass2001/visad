@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setvisadetails } from '../redux/Visaslice'
 import Card from '../components/Card'
 import Pagesnavigation from '../components/Pagesnavigation'
+import { motion } from 'framer-motion'
 const itemsPerPage = 4;
 
 function Home() {
@@ -32,8 +33,10 @@ function Home() {
    }
   return (
     <div>
-      <div className="w-[76%] fixed z-20 h-[300px] shadow-sm border-t border-gray-200 shadow-gray-300 pb-3 pt-2 scrollbar-hidden  overflow-y-auto  top-[280px] right-2  left-[20%]"
-    
+      <motion.div className="w-[76%] fixed z-20 h-[300px] shadow-sm border-t border-gray-200 shadow-gray-300 pb-3 pt-2 scrollbar-hidden  overflow-y-auto  top-[280px] right-2  left-[20%]"
+       initial={{ scale: 0, opacity:0 }}   // starting position
+      animate={{ opacity: 1, scale: 1 }}     // final position
+      transition={{ duration: 0.9,delay:1.7 }}     // 
       >
         <div className="rounded-3xl   w-full relative overflow-y-auto  px-20 py-7"
        
@@ -69,7 +72,7 @@ function Home() {
 
 
         </div>
-      </div>
+      </motion.div>
        <Pagesnavigation handlePrev={handlePrev} page={page} handlenext={handleNext}/>
     </div>
   )
