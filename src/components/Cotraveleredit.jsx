@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { newaddentry } from '../redux/Visaslice';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Cotraveleredit({person, editpoppup,index,id}) {
   const dispatch=useDispatch()
@@ -40,7 +41,24 @@ const [persons, setperson] = React.useState({
       finditem.cotravelers[index] = persons; // ✅ Update the `persons` field
       localStorage.setItem("visa", JSON.stringify(parsed));
       dispatch(newaddentry(parsed));
-
+ toast.success(`${person.firstName} Edited successfully!`, {
+  containerId: "form-toast",
+   style: {
+    backgroundColor: "white",
+    color: "black",
+    height: "16px",
+    padding: "0 6px",
+    fontWeight: "bold",
+    borderRadius: "4px",
+    fontSize: "10px",
+    lineHeight: "1",
+    marginTop:"60px",
+    width: "200px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
     
     } else {
       console.log("Item with matching ID not found");
@@ -53,9 +71,18 @@ const [persons, setperson] = React.useState({
      return (
        <div className="fixed inset-0 bg-black/75 z-50 place-content-center place-items-center h-screen">
        
-           <form 
+<form 
+          
+           className="scrollbar-hidden italic h-[600px] flex flex-col space-y-3 overflow-y-auto relative bg-white pb-4 pt-14 px-6 rounded-3xl shadow-lg w-[35%] scrollbar-hide"
            onSubmit={updatedetails}
-           className="italic bg-white  relative overflow-y-auto w-[35%] max-h-[800px] pb-4 pt-14 px-6 rounded-3xl shadow-lg">
+           
+           >
+             <ToastContainer
+                 enableMultiContainer
+                 containerId="form-toast"
+                 position="top-center"
+                 
+               />
              
            <div className="relative">
            <input type="text"
@@ -63,18 +90,19 @@ const [persons, setperson] = React.useState({
             onChange={handlechange} 
             
             placeholder='First Name'
-            className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500" value={persons.firstName} />
-            <div className='px-2 absolute left-4 top-[-23%] bg-white'>First Name</div>
+            className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500" value={persons.firstName} />
+             <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>First name</div>
             </div>
    
      <div className="relative">
            <input type="text"
-           onChange={handlechange} 
+           onChange={handlechange}
+            
            name='lastName'
            value={persons.lastName}
            placeholder='Last Name'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"  />
-           <div className='px-2 absolute left-4 top-[-22%] bg-white'>Last Name</div>
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"  />
+         <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Last name</div>
    
            </div>
    
@@ -84,23 +112,23 @@ const [persons, setperson] = React.useState({
             
            name='gender' 
            placeholder="gender"
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.gender} />
-             <label className='px-2 absolute left-4 top-[-22%] bg-white'>Gender</label>
+            <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Gender</div>
    
    </div>
    
    
 
    <div className="relative">
-    <input type="text"
+    <input type="date"
            onChange={handlechange}
             
            name='dob' 
            placeholder="DD/MM/YYYY"
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.dob} />
-             <label className='px-2 absolute left-4 top-[-22%] bg-white'>Dob</label>
+             <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Dob</div>
    </div>
 
    <div className="relative">
@@ -109,9 +137,9 @@ const [persons, setperson] = React.useState({
             
            name='nationality' 
            placeholder='Nationality'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.nationality} />
-            <label className='px-2 absolute left-4 top-[-22%] bg-white'>Nationalty</label>
+           <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Nationality</div>
    </div>
    
    <div className="relative">
@@ -120,42 +148,41 @@ const [persons, setperson] = React.useState({
            
            name='passportNo' 
            placeholder='Passport No'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.passportNo} />
-             <label className='px-2 absolute left-4 top-[-22%] bg-white'>Passport No</label>
+            <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Passport No</div>
    </div>
    
    <div className="relative">
-            <input type="text"
+            <input type="date"
            onChange={handlechange}
-          
            name='passportExpiry' 
            placeholder='Passport Expiry'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.passportExpiry} />
-            <label className='px-2 absolute left-4 top-[-22%] bg-white'>Passport Expiry</label>
+            <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Passport Expiry</div>
    </div>
    
    <div className="relative">
             <input type="text"
            onChange={handlechange} 
            placeholder='Contact'
-      
+           
            name='contact'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.contact} />
-            <label className='px-2 absolute left-4 top-[-22%] bg-white'>Contact</label>
+           <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Contact</div>
       </div>
    
         <div className="relative">  
            <input type="email"
            onChange={handlechange}
-         
+           
            placeholder='Email'
            name='email'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.email} />
-            <label className='px-2 absolute left-4 top-[-22%] bg-white'>email</label>
+           <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Email</div>
            </div>  
    
      <div className="relative">  
@@ -163,10 +190,10 @@ const [persons, setperson] = React.useState({
            onChange={handlechange} 
            
            name='addressLine1'
-           placeholder='addressLine1'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           placeholder='Address 1'
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.addressLine1} />
-            <label className='px-2 absolute left-4 top-[-22%] bg-white'>Address2</label>
+            <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Address1</div>
    </div>
 
    <div className="relative">  
@@ -174,10 +201,10 @@ const [persons, setperson] = React.useState({
            onChange={handlechange} 
            
            name='addressLine2'
-           placeholder='AddressLine 2'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           placeholder='Address 2'
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.addressLine2} />
-            <label className='px-2 absolute left-4 top-[-22%] bg-white'>Address2</label>
+           <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Address2</div>
    </div>
    
    <div className="relative"> 
@@ -186,9 +213,9 @@ const [persons, setperson] = React.useState({
           
            name='state'
            placeholder='State'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.state} />
-            <label className='px-2 absolute left-4 top-[-22%] bg-white'>State</label>
+           <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>State</div>
    </div>
    
    <div className="relative"> 
@@ -197,31 +224,46 @@ const [persons, setperson] = React.useState({
           
            name='city'
            placeholder='City'
-           className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.city} />
-            <label className='px-2 absolute left-4 top-[-22%] bg-white'>City</label>
+          <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>City</div>
    </div>
    
    <div className="relative"> 
-             <input type="postcode"
+             <input type="text"
            onChange={handlechange} 
+           
            name='postcode'
            placeholder='postcode'
-           className="w-full py-2 bg-white text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+           className="w-full py-2 bg-white text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
             value={persons.postcode} />
-            <label className='px-2 absolute left-4 top-[-22%] bg-white'>Postcode</label>
+           <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Postcode</div>
             </div> 
+
+<div className="relative"> 
+             <input type="text"
+           onChange={handlechange} 
+           
+           name='note'
+           placeholder='Travelnote'
+           className="w-full py-2 bg-white text-sm mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+            value={persons.note} />
+           <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Note</div>
+            </div>
+
               <button
               type='submit'
-              className="w-full text-2xl py-3 rounded-2xl font-bold text-white bg-green-500">Edit</button>
+              className="w-full text-md py-2 rounded-2xl font-bold text-white bg-green-500">Edit</button>
          
-           <button 
+          <button 
           type='button'
-          className="w-13 h-13 text-xl not-italic bg-green-500 absolute top-1 right-2 text-white rounded-full"
+          className="w-8 h-8 text-xs not-italic font-bold bg-green-500 absolute top-2 right-2 text-white rounded-full"
           onClick={editpoppup}
           >
            X
          </button>
+
+         
            </form>
           
         

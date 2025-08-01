@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { dropdownfilter, searchproducts } from '../redux/Visaslice';
-import { User, Bell, Mail, User2, User2Icon, UserCheck } from "lucide-react";
+import { User, Bell, Mail, User2, User2Icon, UserCheck, UserCircle2 } from "lucide-react";
 import Passengersentry from './Addentries';
 import { Typewriter } from 'react-simple-typewriter';
+import { motion } from 'framer-motion';
 
 function Navbar() {
   const [search, setsearch] = useState("");
@@ -34,28 +35,28 @@ const searchproduct=()=>{
 }
 
   return (
-    <header >
+    <header className='' >
 
       
-      <nav className={`w-[78%] fixed ${searchbar?"z-30":"z-10"} top-6 left-[20%] right-4 bg-white border-t-1 border-white rounded-3xl px-6 pt-4 pb-[120px] shadow-sm shadow-gray-400`}>
+      <nav className={`w-[78%] fixed ${searchbar?"z-30":"z-10"} flex justify-between items-center top-6 left-[250px] right-4 bg-white border-t-1 border-white rounded-3xl px-6 pt-4 pb-20 shadow-sm shadow-gray-400`}>
         
-        <div className="flex items-center justify-between w-full">
-          <h1 className="text-5xl mb-3 font-bold opacity-80 text-green-500 italic">Dashboard</h1>
+        
+          <h1 className="text-4xl mb-3 font-bold  text-green-500 italic">Dashboard</h1>
         {/* Left: Search Box */}
         <div 
         onBlur={()=>setTimeout(()=>{setsearchbar(false)},200)}
-        className="flex relative transition-all duration-600 ease-in-out items-center pt-2 gap-2 bg-white rounded-full shadow-[2px_2px_8px_green] px-5 py-2 hover:shadow-[4px_4px_12px_green] transform hover:scale-[1.02]">
+        className="flex relative py-1 px-1 h-[42px]  transition-all duration-600 ease-in-out items-center  gap-2 bg-white rounded-full shadow-[2px_2px_8px_green]  hover:shadow-[4px_4px_12px_green] transform hover:scale-[1.02]">
   <input
     type="text"
     onChange={handlechange}
     value={search}
    
     placeholder="Search here"
-    className="rounded-full text-lg italic pl-3 border-none outline-none h-10 bg-white transition-all duration-500 ease-in-out w-40 focus:w-[430px]"
+    className="rounded-full text-xs font-bold  italic pl-3 border-none outline-none h-full bg-white transition-all duration-500 ease-in-out w-27 focus:w-[250px]"
   />
   <button
     onClick={searchproduct}
-    className="px-5 py-3 bg-white text-sm italic font-bold rounded-xl border-2 border-green-500 transition duration-300 hover:bg-green-100"
+    className=" bg-white p-1 text-xs italic font-semibold rounded-xl border-1 border-green-500 transition duration-300 hover:bg-green-100"
   >
     Search
   </button>
@@ -64,18 +65,18 @@ const searchproduct=()=>{
   {searchbar && search !== "" ? (
     <div 
     
-    className="w-full absolute top-20 rounded-3xl text-black right-0 left-0 bg-white shadow-sm shadow-gray-500 py-5 px-2 z-10 max-h-80 overflow-y-auto">
+    className="w-full absolute top-13 rounded-3xl text-black right-0 left-0 bg-white shadow-sm shadow-gray-500 py-2 px-2 z-10 max-h-80 overflow-y-auto">
       {alldetails?.length > 0 ? (
         alldetails?.map((item,i) => (
           <div
           onClick={()=>searchdrowpdownfilter(item.id)}
-          className="flex gap-3 border-1 border-gray-200 text-black italic font-bold bg-white hover:bg-gray-200 cursor-pointer py-2 px-4 rounded-md mb-2" key={item.id}>
+          className="flex gap-3 text-xs border-1 border-gray-200 text-black italic font-bold bg-white hover:bg-gray-200 cursor-pointer p-1 rounded-md mb-2" key={item.id}>
             <p className="">{item?.id}</p>
             <p>{item?.persons?.name.split(" ")[0]}</p>     
              <p>{item?.persons?.visacenter}</p>
              <p>{item?.persons?.traveldate}</p>
               <p>{item?.persons?.status}</p>
-              <p>{item?.persons?.agent}</p>
+              
           </div>
         ))
       ) : (
@@ -87,38 +88,47 @@ const searchproduct=()=>{
 
 
         {/* Right: Icons and Profile */}
-        <div className="flex items-center gap-6 text-green-500">
+        <div className="flex items-center gap-4 text-green-500">
           <button
   onClick={() => setentries(true)}
-  className="flex items-center gap-2 px-6 py-3 text-lg font-semibold text-white border-2 hover:text-white border-green-500 rounded-full bg-green-500 transition duration-200"
+  className="flex items-center shadow-md shadow-gray-300 font-semibold transform-transition duration-300 gap-2 py-2 px-2  text-sm w-[120px] italic text-green-500 border-1  border-green-500 hover:scale-105 rounded-full bg-white "
 >
-  <UserCheck className="w-7 h-7" />
+  <UserCircle2 className="w-6 h-6" />
   Add Entry
 </button>
           {/* Icons Group */}
-           <User className="w-10 h-10 cursor-pointer hover:text-blue-500" />
+           <User className="w-8 h-8 mb-1 cursor-pointer hover:text-gray-500" />
 
           <div className="relative">
-            <Mail className="w-10 h-10 cursor-pointer hover:text-blue-500" />
-            <button className="h-6 w-6 rounded-full animate-bounce bg-red-500 text-white font-bold text-md absolute -top-1.5 right-[-3px]">1</button>
+            <Mail className="w-7 h-7 cursor-pointer hover:text-gray-500" />
+            <button className="w-5 h-5 flex items-center justify-center  rounded-full animate-bounce bg-red-500 text-white font-bold text-md absolute -top-1.5 right-[-3px]">1</button>
           </div>
 
           <div className="relative">
-            <Bell className="w-10 h-10 cursor-pointer hover:text-blue-500" />
-            <button className="h-6 w-6 animate-bounce rounded-full bg-red-500 text-white font-bold text-md absolute -top-1.5 right-[-3px]">1</button>
+            <Bell className="w-7 h-7 cursor-pointer hover:text-gray-500" />
+            <button className="h-5 w-5 flex items-center justify-center animate-bounce rounded-full bg-red-500 text-white font-bold text-md absolute -top-1.5 right-[-3px]">1</button>
           </div>
 
           {/* Profile */}
           
-<div className="py-4 px-9 hover:scale-110 transform-transition duration-300 gap-4 flex items-center bg-white rounded-full shadow-md shadow-gray-300">
+
+
+        </div>
+
+        <motion.div 
+        initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+     
+      transition={{ duration: 0.4,delay:0.5, ease: "easeInOut" }}
+        className="py-2 px-2 hover:scale-110 transform-transition duration-300 gap-4 flex items-center bg-white rounded-full shadow-md shadow-gray-300">
             <img
               src="https://t4.ftcdn.net/jpg/10/00/85/93/360_F_1000859366_P6SmEvxeMgvXUhx5oFnsbM8rOiGN6SAG.jpg"
               alt="Profile"
-              className="w-12 h-12 rounded-full object-cover border border-green-400"
+              className="w-10 h-10 rounded-full object-cover border border-green-400"
             />
             <div className="flex flex-col">
               <h2 
-               className="text-lg font-semibold text-gray-700 leading-tight">
+               className="text-sm font-semibold text-gray-700 leading-tight">
     <Typewriter
       words={['Hi']}
       loop={Infinity}
@@ -129,9 +139,9 @@ const searchproduct=()=>{
       delaySpeed={1000}
     />
              
-                 <span className="text-green-500 font-bold">
+                 <span className="text-green-500 text-sm font-bold">
                   <Typewriter
-      words={['Rojass']}
+      words={['Rojas']}
       loop={Infinity}
       cursor
       cursorStyle="|"
@@ -141,12 +151,9 @@ const searchproduct=()=>{
     />
             </span>
               </h2>
-              <p className="text-sm text-gray-500">Welcome back!</p>
+              <p className="text-xs text-gray-500">Welcome back!</p>
             </div>
-          </div>
-
-        </div>
-        </div>
+          </motion.div>
       </nav>
 
       {entries && <Passengersentry popup={() => setentries(false)} />}

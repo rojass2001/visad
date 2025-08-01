@@ -1,11 +1,14 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { newaddentry } from '../redux/Visaslice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function PersonEdit({person, editpoppup}) {
+
   const dispatch=useDispatch()
     const [persons, setperson] = React.useState({
-  id: person.id,
+  id: person.persons.id,
   traveldate: person.persons.traveldate,
   name: person.persons.name,
   gender: person.persons.gender,
@@ -37,14 +40,32 @@ function PersonEdit({person, editpoppup}) {
   if (stored) {
     const parsed = JSON.parse(stored); // Parse JSON string to array
 
-    const finditem = parsed.find((item) => item.id === person.id);
+    const finditem = parsed.find((item) => item.id === persons.id);
     
     if (finditem) {
       finditem.persons = persons; // ✅ Update the persons field
       localStorage.setItem("visa", JSON.stringify(parsed));
       dispatch(newaddentry(parsed));
-     
-    } else {
+    toast.success(`${person.persons.name} Edited successfully!`, {
+  containerId: "form-toast",
+   style: {
+    backgroundColor: "white",
+    color: "black",
+    height: "16px",
+    padding: "0 6px",
+    fontWeight: "bold",
+    borderRadius: "4px",
+    fontSize: "10px",
+    lineHeight: "1",
+    marginTop:"60px",
+    width: "200px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+    }
+   else {
       console.log("Item with matching ID not found");
     }
   } else {
@@ -57,67 +78,79 @@ function PersonEdit({person, editpoppup}) {
         setperson({...persons,[e.target.name]:e.target.value})
     }
   return (
-    <div className="fixed inset-0 bg-black/75 z-20 place-content-center place-items-center h-screen">
-     <form 
-       onSubmit={updatedetails}
-        className="italic relative overflow-y-auto max-h-[850px] bg-white pb-4 pt-18 px-6 rounded-3xl shadow-lg w-[35%]">
-   
- <div className="relative mb-4">
+   <div className="fixed bg-black/75 inset-0 z-40 place-content-center place-items-center h-screen">
+    
+        <form 
+        onSubmit={updatedetails}
+        className="scrollbar-hidden italic relative overflow-y-auto h-[600px] bg-white pb-4 pt-14 px-6 rounded-3xl shadow-lg w-[35%]">
+
+ <ToastContainer
+    enableMultiContainer
+    containerId="form-toast"
+    position="top-center"
+    
+  />
+
+
+ <div className="relative mb-3">
         <input type="Date"
          name="traveldate" 
-        value={persons.traveldate}
+         
          onChange={handlechange} 
+         value={persons.traveldate}
          placeholder='traveldate'
-         className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"  />
-         <div className='px-2 absolute left-4 top-[-23%] bg-white'>Traveldate</div>
+         className="w-full py-2 text-sm text-black mb-3  font-bold pl-4 outline-none rounded-full border-2 border-green-500"  />
+         <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Traveldate</div>
          </div>
 
-      <div className="relative mb-4">
+        <div className="relative mb-3">
         <input type="text"
+        
          name="name" 
-         value={persons.name}
          onChange={handlechange} 
          placeholder='name'
-         className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"  />
-         <div className='px-2 absolute left-4 top-[-23%] bg-white'>Full Name</div>
+         value={persons.name}
+         className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"  />
+         <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Fullname</div>
          </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
         <select 
+        
          name="visacenter" 
-         value={persons.visacenter}
          onChange={handlechange} 
-         
-         placeholder='traveldate'
-         className="w-full py-2 text-xl mb-4 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
+         value={persons.visacenter}
+         placeholder='visacenter'
+         className="w-full py-2 text-sm text-black mb-3 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
         >
          <option value="" className="">select Visacenter</option>
          <option value="London" className="">London</option>
          <option value="Manchester" className="">Manchester</option>
          <option value="Edinburgh" className="">Edinburgh</option>
         </select>
-        <div className='px-2 absolute left-4 top-[-23%] bg-white'>Visacenter</div>
+       <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Visacenter</div>
          </div>
 
 
 
-<div className="relative mb-4">
+<div className="relative mb-3">
         <input type="email"
+        
          name="email" 
-         value={persons.email}
          onChange={handlechange} 
          placeholder='email'
-         className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"  />
-         <div className='px-2 absolute left-4 top-[-23%] bg-white'>Email</div>
+         value={persons.email}
+         className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"  />
+         <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Email</div>
          </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
         <select 
+        
          name="status" 
-         value={persons.status}
          onChange={handlechange} 
          placeholder='traveldate'
-         className="w-full py-2 text-xl mb-4 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
+         className="w-full py-2 text-sm text-black mb-3 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
         >
           <option value="" className="">Select Status</option>
          <option value="Activated" className="">activated</option>
@@ -126,17 +159,17 @@ function PersonEdit({person, editpoppup}) {
          <option value="Refunded" className="">refunded</option>
          <option value="Appoinment" className="">appointment</option>
         </select>
-        <div className='px-2 absolute left-4 top-[-23%] bg-white'>Status</div>
+       <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Status</div>
          
          </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
         <select 
+        
          name="agent" 
-         value={persons.agent}
          onChange={handlechange} 
          placeholder='traveldate'
-         className="w-full py-2 text-xl mb-4 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
+         className="w-full py-2 text-sm text-black mb-3 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
         >
           <option value="" className="">Select Agent</option>
          <option value="Rohit" className="">Rohit</option>
@@ -144,17 +177,18 @@ function PersonEdit({person, editpoppup}) {
          <option value="Pankaj" className="">Pankaj</option>
         
         </select>
-        <div className='px-2 absolute left-4 top-[-23%] bg-white'>Agent</div>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Agent</div>
          
          </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
         <select 
-         name="travelcountry" 
-         value={persons.travelcountry}
+        
+         name="travelcountry"
+         value={persons.travelcountry} 
          onChange={handlechange} 
          placeholder='travelcountry'
-         className="w-full py-2 text-xl mb-4 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
+         className="w-full py-2 text-sm text-black mb-3 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
         >
           <option value="" className="">Select Country</option>
          <option value="America" className="">America</option>
@@ -165,180 +199,184 @@ function PersonEdit({person, editpoppup}) {
          <option value="Ireland" className="">Ireland</option>
         
         </select>
-        <div className='px-2 absolute left-4 top-[-23%] bg-white'>Travelcountry</div>
+       <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Travelcountry</div>
          
          </div>
 
 
-         <div className="relative mb-4">
+         <div className="relative mb-3">
         <select 
+        
          name="gender" 
-         value={persons.gender}
          onChange={handlechange} 
-         className="w-full py-2 text-xl mb-4 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
+         placeholder='visatype'
+         className="w-full py-2 text-sm text-black mb-3 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
         >
           <option value="" className="">Select Gender</option>
-         <option value="Male" className="">Male</option>
-         <option value="Female" className="">Female</option>
-         <option value="Other" className="">other</option>
+         <option value="male" className="">Male</option>
+         <option value="female" className="">Female</option>
+         <option value="other" className="">Other</option>
          
+        
+        
         </select>
-        <div className='px-2 absolute left-4 top-[-23%] bg-white'>Gender</div>
+ <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Gender</div>
          
          </div>
 
 
-         <div className="relative mb-4">
+         <div className="relative mb-3">
         <select 
+        
          name="visatype" 
-         value={persons.visatype}
          onChange={handlechange} 
-       
-         className="w-full py-2 text-xl mb-4 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
+         placeholder='visatype'
+         className="w-full py-2 text-sm text-black mb-3 font-bold pl-3 outline-none rounded-full border-2 border-green-500"
         >
           <option value="" className="">Select Visatype</option>
-         <option value="Family/friend" className="">Family/friend</option>
-         <option value="Tourist" className="">Tourist</option>
-          <option value="Business" className="">Business</option>
-         <option value="Other" className="">Other</option>
+         <option value="Family/friendvisit" className="">Family/friendvisit</option>
+         <option value="tourist" className="">Tourist</option>
+          <option value="business" className="">Business</option>
+         <option value="other" className="">other</option>
         
         
         </select>
-        <div className='px-2 absolute left-4 top-[-23%] bg-white'>Visatype</div>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Visatype</div>
          
          </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
         <input type="text"
          name="firstName" 
+         
          onChange={handlechange} 
          placeholder='First Name'
-         className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+         className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
           value={persons.firstName} />
-         <div className='px-2 absolute left-4 top-[-23%] bg-white'>First Name</div>
+       <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Firstname</div>
          </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
         <input type="text"
         onChange={handlechange} 
         name='lastName'
         
         placeholder='Last Name'
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.lastName} />
-        <div className='px-2 absolute left-4 top-[-22%] bg-white'>Last Name</div>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Lastname</div>
 
         </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
  <input type="date"
         onChange={handlechange} 
         name='dob' 
         
         placeholder="DD/MM/YYYY"
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.dob} />
-          <label className='px-2 absolute left-4 top-[-22%] bg-white'>Dob</label>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Dob</div>
 </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
         <input type="text"
         onChange={handlechange} 
         
         name='passportNo' 
         placeholder='Passport No'
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.passportNo} />
-          <label className='px-2 absolute left-4 top-[-22%] bg-white'>Passport No</label>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Passport No</div>
 </div>
 
-<div className="relative mb-4">
-         <input type="text"
+<div className="relative mb-3">
+         <input type="date"
         onChange={handlechange} 
         
         name='passportExpiry' 
         placeholder='Passport Expiry'
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.passportExpiry} />
-         <label className='px-2 absolute left-4 top-[-22%] bg-white'>Passport Expiry</label>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Passport Expiry</div>
 </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
          <input type="text"
         onChange={handlechange} 
         placeholder='Contact'
         name='contact'
         
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.contact} />
-         <label className='px-2 absolute left-4 top-[-22%] bg-white'>Contact</label>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Contact</div>
    </div>
 
-<div className="relative mb-4">
+<div className="relative mb-3">
          <input type="text"
         onChange={handlechange}
          
         placeholder='Nationality'
         name='nationality'
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.nationality} />
-         <label className='px-2 absolute left-4 top-[-22%] bg-white'>Nationality</label>
+       <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Nationality</div>
    </div>
 
-<div className="relative mb-4">  
+<div className="relative mb-3">  
          <input type="text"
          
         onChange={handlechange} 
         name='address1'
         placeholder='Address 1'
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.address1} />
-         <label className='px-2 absolute left-4 top-[-22%] bg-white'>Address1</label>
+         <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Address</div>
 </div>
 
 
- <div className="relative mb-4">  
+ <div className="relative mb-3">  
          <input type="text"
         onChange={handlechange} 
         name='address2'
         
         placeholder='Address 2'
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.address2} />
-         <label className='px-2 absolute left-4 top-[-22%] bg-white'>Address2</label>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Address 2</div>
 </div>
 
-<div className="relative mb-4"> 
+<div className="relative mb-3"> 
           <input type="text"
         onChange={handlechange} 
         name='state'
         
         placeholder='State'
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.state} />
-         <label className='px-2 absolute left-4 top-[-22%] bg-white'>State</label>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Visacenter</div>
 </div>
 
-<div className="relative mb-4"> 
+<div className="relative mb-3"> 
  <input type="text"
         onChange={handlechange} 
         name='city'
         
         placeholder='City'
-        className="w-full py-2 text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.city} />
-         <label className='px-2 absolute left-4 top-[-22%] bg-white'>City</label>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>City</div>
 </div>
 
-<div className="relative mb-4"> 
+<div className="relative mb-3"> 
           <input type="text"
         onChange={handlechange} 
         name='postcode'
         
         placeholder='postcode'
-        className="w-full py-2 bg-white text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 bg-white text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.postcode} />
-         <label className='px-2 absolute left-4 top-[-22%] bg-white'>Postcode</label>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Postcode</div>
          </div> 
 
          <div className="relative "> 
@@ -347,23 +385,22 @@ function PersonEdit({person, editpoppup}) {
         name='note'
         
         placeholder='Note'
-        className="w-full py-2 bg-white text-xl mb-4 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
+        className="w-full py-2 bg-white text-sm text-black mb-3 font-bold pl-4 outline-none rounded-full border-2 border-green-500"
          value={persons.note} />
-         <label className='px-2 absolute left-4 top-[-22%] bg-white'>Travel note</label>
+        <div className='px-1 absolute font-bold left-4 -top-2 text-xs bg-white'>Travelnote</div>
          </div> 
 
  <button 
-       className="w-10 h-10 text-xl not-italic z-20 bg-green-500 absolute top-3 right-3.5 text-white rounded-full"
-      onClick={editpoppup}
+       className="w-8 h-8 text-sm not-italic z-20 bg-green-500 absolute top-3 right-3.5 text-white rounded-full"
+       onClick={editpoppup}
        type="button"
        >
         X
       </button>
  
-      <button 
-      type='submit' className="p-2 rounded-full w-full bg-green-500 border-2 border-green-500 text-black font-bold text-xl">Submit</button>
-        
+      <button type='submit' className="p-2 rounded-full w-full bg-green-500 border-2 border-green-500 text-black font-bold text-sm">Submit</button>
         </form>
+      
     </div>
   )
 }

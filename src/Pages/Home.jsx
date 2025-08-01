@@ -1,11 +1,12 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState} from 'react'
 import Navbar from '../components/Navbar'
 import Filter from '../components/Filter'
 import {visa} from '../Visa'
 import { useDispatch, useSelector } from 'react-redux'
 import { setvisadetails } from '../redux/Visaslice'
 import Card from '../components/Card'
-
+import Pagesnavigation from '../components/Pagesnavigation'
+const itemsPerPage = 4;
 
 function Home() {
     const {alldetails}=useSelector((state)=>state.visa)
@@ -13,44 +14,63 @@ function Home() {
     useEffect(()=>{
     setdetails()
     },[])
-   
+    const totalPages = Math.ceil(alldetails?.length / itemsPerPage);
+  const [page, setPage] = useState(0);
+
+  const handleNext = () => {
+    setPage((prev) => (prev + 1 < totalPages ? prev + 1 : 0));
+  };
+
+  // Prev page with wrap
+  const handlePrev = () => {
+    setPage((prev) => (prev - 1 >= 0 ? prev - 1 : totalPages - 1));
+  };
+
+
    function setdetails(){
       dispatch(setvisadetails(visa))
    }
   return (
     <div>
-      <div className="w-[76%] fixed z-10  pt-8 top-[38%] right-2  left-[20%]"
+      <div className="w-[76%] fixed z-20 h-[300px] shadow-sm border-t border-gray-200 shadow-gray-300 pb-3 pt-2 scrollbar-hidden  overflow-y-auto  top-[280px] right-2  left-[20%]"
     
       >
-        <div className="rounded-3xl w-full relative overflow-y-auto border-green-500 px-20 py-7"
+        <div className="rounded-3xl   w-full relative overflow-y-auto  px-20 py-7"
+       
+    >
+     
+      <div className="w-full py-3 text-[13.5px] border-1 border-green-500 font-bold  italic pl-8 pr-15 flex justify-between shadow-sm shadow-gray-300 mb-6">
+      <h1 className='text-gray-700'>Name</h1>
+      <h1 className='text-gray-700'>Date</h1>
+      <h1 className='text-gray-700'>Visacenter</h1>
+      <h1 className='text-gray-700'>Agent</h1>
+      <h1 className='text-gray-700'>Status</h1>
+      <h1 className='text-gray-700'>Travelcountry</h1>
+      <h1 className='text-gray-700'>Visatype</h1>
+      <h1 className='text-gray-700'>Contact</h1>
+      
 
-    style={{height:'calc(100vh - 500px)'}}>
+
+      </div>
       {alldetails.length===0&&
       
       <h1 className="text-4xl text-green-500 italic text-center font-bold opacity-85">No Search Found</h1>
       
       }
+      
          {
-            alldetails?.map((persons)=>(
+            alldetails?.slice(
+    page * itemsPerPage,
+    page * itemsPerPage + itemsPerPage
+  ).map((persons)=>(
               <Card persons={persons} key={persons.id}/>
             ))
          }
 
-{alldetails.length>0&&
 
-         <div className="p-2 justify-between text-white rounded-2xl shadow-sm font-bold border-2 border-green-500 shadow-gray-400 items-center bg-white flex">
-      <button className="px-5 py-3.5 bg-green-500">1</button>
- <div className="flex gap-3">
- <button className="p-2 bg-green-500">1</button>
- <button className="p-2 bg-green-500">1</button>
- <button className="p-2 bg-green-500">1</button>
-         </div>
-        
-<button className="px-5 py-3.5 bg-green-500">1</button>
-
-        </div> }
         </div>
       </div>
+       <Pagesnavigation handlePrev={handlePrev} page={page} handlenext={handleNext}/>
     </div>
   )
 }

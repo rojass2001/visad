@@ -34,6 +34,7 @@ setvisadetails: (state, action) => {
 searchproducts: (state, action) => {
      state.alldetails = state.filterdetails.filter((item) =>
   item.persons.name.toLowerCase().includes(action.payload.toLowerCase()) ||
+    item.persons.visacenter.toLowerCase().includes(action.payload.toLowerCase()) || 
   item.persons.contact.toLowerCase().includes(action.payload.toLowerCase()) ||
   item.persons.visacenter.toLowerCase().includes(action.payload.toLowerCase()) ||
   item.persons.travelcountry.toLowerCase().includes(action.payload.toLowerCase()) ||
@@ -82,6 +83,7 @@ setfilterpage:(state,action)=>{
 
  newaddentry:(state,action)=>{
     state.alldetails=action.payload;
+    state.filterdetails=action.payload;
   },
   
    dropdownfilter:(state,action)=>{
